@@ -2,6 +2,7 @@
   "name": "simple-list-api",
   "version": "1.0.0",
   "description": "Simple List connected to an API",
+  "keywords": ["React", "Redux", "Redux-Saga", "Axios", "ESLint", "Jest"],
   "main": "index.js",
   "repository": "https://github.com/rubencanovaca/simple-list-api.git",
   "author": "Rubén Canovaca Nieto",

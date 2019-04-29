@@ -54,7 +54,8 @@ http://localhost:3000
 
 ### Todos
 
- - Search item, put item, modify item, delete item, etc...
+ - Search and delete items
+ - Create new page to add or edit items
  - Implement unit tests
 
 
