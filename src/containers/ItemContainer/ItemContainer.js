@@ -3,64 +3,70 @@ import PropTypes from 'prop-types'
 import {compose} from 'recompose'
 import {createStructuredSelector} from 'reselect/lib/index'
 import {connect} from 'react-redux'
-import _ from 'lodash'
+import {Link} from 'react-router-dom'
 
-import {fetchingSelector, itemSelector} from '../../store/selectors/itemSelector'
+import {fetchingSelector} from '../../store/selectors/itemSelector'
+
 import {item} from '../../store/actions'
 import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation'
-import ListComponent from '../../components/ListComponent/ListComponent'
 import HandleError from '../../hocs/handleError'
 
-class MainContainer extends Component {
+class ItemContainer extends Component {
   static propTypes = {
-    data: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array
-    ]).isRequired,
+    itemId: PropTypes.string,
     fetching: PropTypes.bool,
-    load: PropTypes.func.isRequired
+    loadOne: PropTypes.func.isRequired
   }
 
   static defaultProps = {
+    itemId: '',
     fetching: false
   }
 
   constructor (props) {
     super(props)
     this.state = {
-      input: ''
+      item: {
+        title: '',
+        body: ''
+      }
     }
   }
 
   componentDidMount () {
-    const {load} = this.props
-    load()
+    const {itemId, loadOne} = this.props
+    loadOne(itemId)
+    this.setState({item: {title: item.title}})
   }
 
   onChangeInput (e) {
-    this.setState({input: e.target.value})
+    this.setState({item: {title: e.target.value}})
   }
 
-  clearInput () {
-    this.setState({input: ''})
+  saveItem () {
+    const {item} = this.state
+    item.save(item)
   }
 
   render () {
-    const {data, fetching} = this.props
-    const {input} = this.state
-    const filteredList = input ? _.filter(data, item => _.includes(item.title, input)) : data
+    const {itemId, fetching} = this.props
+    const {item} = this.state
     return (
       <div className="container-fluid">
-        <h1>Items</h1>
+        <Link to="/">Back</Link>
+        <h1>
+          Item id #
+          {itemId}
+        </h1>
         <div className="row">
           <div className="col-12">
-            <div className="item-search">
-              <div className="input-group mb-3">
+            <div className="item-container">
+              <div className="mb-3">
                 <input
                   type="text"
-                  value={input}
+                  value={item.title}
                   className="form-control"
-                  placeholder="Find in title"
+                  placeholder="Title"
                   aria-label="Item"
                   aria-describedby="Item"
                   onChange={this.onChangeInput.bind(this)}
@@ -69,15 +75,14 @@ class MainContainer extends Component {
                   <button
                     className="btn btn-secondary"
                     type="button"
-                    disabled={!input}
-                    onClick={this.clearInput.bind(this)}
+                    disabled={!item.title}
+                    onClick={this.saveItem.bind(this)}
                   >
-                    Clear
+                    Done
                   </button>
                 </div>
               </div>
             </div>
-            <ListComponent data={filteredList}/>
           </div>
         </div>
         {fetching && <LoadingAnimation/>}
@@ -87,15 +92,14 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  data: itemSelector(),
   fetching: fetchingSelector()
 })
 
 const mapDispatchToProps = {
-  load: item.request
+  loadOne: item.requestOne
 }
 
 export default compose(
   HandleError,
   connect(mapStateToProps, mapDispatchToProps)
-)(MainContainer)
+)(ItemContainer)
