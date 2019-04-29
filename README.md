@@ -1,6 +1,10 @@
+# Simple List + API connection
+
+It's a simple list of made with React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## This is an advanced Boilerplate Project using:
+## This is a simple project using:
 
 - Redux
 - Redux-Saga
@@ -14,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Getting Started
 
-There are two methods for getting started with this repo.
+There are two methods for getting started with this repo:
 
 #### Familiar with Git?
 
@@ -23,7 +27,6 @@ There are two methods for getting started with this repo.
   > cd simple-list-api
   > npm install
   > npm start
-  > in your Browser open http://localhost:3000
 ```
 
 #### Not Familiar with Git?
@@ -31,7 +34,10 @@ There are two methods for getting started with this repo.
 ```
   > npm install
   > npm start
-  > in your Browser open http://localhost:3000
+```
+
+```sh
+http://localhost:3000
 ```
 
 ## Testing
@@ -45,3 +51,13 @@ There are two methods for getting started with this repo.
 ```
   > npm test
 ```
+
+### Todos
+
+ - Search item, put item, modify item, delete item, etc...
+ - Implement unit tests
+
+
+License
+----
+MIT
