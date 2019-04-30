@@ -1,6 +1,6 @@
 # Simple List + API connection
 
-It's a simple list of made with React
+It's a simple list made with React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
