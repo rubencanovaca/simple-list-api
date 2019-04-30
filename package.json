@@ -20,7 +20,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "esw --ext .jsx --ext .js --color",
-    "lint:fix": "npm lint -- --fix"
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "axios": "^0.18.0",
