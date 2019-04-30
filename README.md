@@ -49,7 +49,7 @@ http://localhost:3000
 
 ### To run Tests
 ```
-  > npm test
+  > npm run test
 ```
 
 ### Todos
